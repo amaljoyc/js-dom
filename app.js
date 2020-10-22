@@ -25,15 +25,54 @@ function deleteBook() {
     }
   });
 }
+/**
+ * adds new book into the list very easily using the clone of another book and overwriting the content
+ */
+function addBookUsingClone() {
+  const addForm = document.forms["add-book"];
+  const ul = document.querySelector("#book-list ul");
 
+  addForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    const value = addForm.children[0].value;
+    const newBook = ul.children[0].cloneNode(true);
+    newBook.children[0].textContent = value;
+    ul.appendChild(newBook);
+  });
+}
+
+/**
+ * adds new book into the list by creating the new elements from scratch
+ */
 function addBook() {
   const addForm = document.forms["add-book"];
   const ul = document.querySelector("#book-list ul");
+
   addForm.addEventListener("submit", function (event) {
     event.preventDefault();
-    const newBook = ul.children[0].cloneNode(true);
-    newBook.children[0].textContent = addForm.children[0].value;
-    ul.appendChild(newBook);
+    const value = addForm.children[0].value;
+
+    // create elements
+    const li = document.createElement("li");
+    const bookName = document.createElement("span");
+    const deleteBtn = document.createElement("span");
+
+    // attach the created elements
+    li.appendChild(bookName);
+    li.appendChild(deleteBtn);
+    ul.appendChild(li);
+
+    // add the form submitted value into the bookName
+    bookName.textContent = value;
+    deleteBtn.textContent = "delete";
+
+    // add necessary styles into the new elements
+    // can also be done using `bookName.classList.add("name")` if there are multiple classes
+    bookName.className = "name";
+    deleteBtn.className = "delete";
+
+    // also add a green color for the newly added bookname
+    bookName.style.color = "green";
   });
 }
 
