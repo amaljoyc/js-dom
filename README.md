@@ -43,3 +43,15 @@ Note: above, the `myElement` is an already saved variable using the querySelecto
 - setAttribute
 - hasAttribute
 - removeAttribute
+
+## DOMContentLoaded event
+
+this event can be used to wait until the DOM is fully loaded before using your dom methods. This is especially useful when you do not have your script at the bottom of html page, but at the header and it executes before the DOM is ready.
+
+So basically, waiting for this event to be fired, and then executing all your DOM specific logic.
+
+```
+document.addEventListener('DOMContentLoaded', function(event) {
+    ...
+})
+```
