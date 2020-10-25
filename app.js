@@ -68,6 +68,7 @@ function addBook() {
 
     // add necessary styles into the new elements
     // can also be done using `bookName.classList.add("name")` if there are multiple classes
+    // can also be done using `bookName.setAttribute("class", "name")`
     bookName.className = "name";
     deleteBtn.className = "delete";
 
@@ -76,5 +77,24 @@ function addBook() {
   });
 }
 
+function search() {
+  const searchInput = document.forms["search-books"].querySelector("input");
+  const ul = document.querySelector("#book-list ul");
+  const books = ul.querySelectorAll("li");
+
+  searchInput.addEventListener("keyup", function (event) {
+    const searchTerm = event.target.value;
+    books.forEach((book) => {
+      const bookName = book.firstElementChild.textContent.toLocaleLowerCase();
+      if (bookName.includes(searchTerm.toLocaleLowerCase())) {
+        book.style.display = "block";
+      } else {
+        book.style.display = "none";
+      }
+    });
+  });
+}
+
 deleteBook();
 addBook();
+search();

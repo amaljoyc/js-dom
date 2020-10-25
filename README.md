@@ -36,3 +36,10 @@ myElement.addEventListener('click', function(event) {
 ```
 
 Note: above, the `myElement` is an already saved variable using the querySelector.
+
+## attribute methods
+
+- getAttribute
+- setAttribute
+- hasAttribute
+- removeAttribute
